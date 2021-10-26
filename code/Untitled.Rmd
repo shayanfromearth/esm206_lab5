@@ -72,4 +72,6 @@ Is there a significant difference in mean heights for oak and pine trees?
 trees_t <- t.test(oak_trees, pine_trees)
 ```
 
-The p-value of `r trees_t$p.value` means that there is a `r round(trees_t$p.value*100, 1)`% chance of finding sample means *at least as different* as those I found by random chance if they were drawn from populations with the same mean height.
+The p-value of `r trees_t$p.value` means that there is a `r round(trees_t$p.value * 100, 1)`% chance of finding sample means *at least as different* as those I found by random chance if they were drawn from populations with the same mean height.
+
+Based on this, I would reject the null hypothesis. 
