@@ -45,5 +45,31 @@ In-line code referencing to stored objects!
 
 Use a single back tick (*not* an apostrophe) on either side of a lowercase r to create an in-line bit of code.
 
-Mean pika mass at Paiute Pass is `r round(pika_mean, 1)` g $\pm$ `r round(pika_sd, 1)` g (mean $\pm$ 1 standard deviation, n = `r length(pika_mass)`)
+Mean pika mass at Paiute Pass is `r round(pika_mean, 1)` g $\pm$ `r round(pika_sd, 1)` g (mean $\pm$ 1 standard deviation, n = `r length(pika_mass)`) with a 95% confidence interval of [`r round(pika_ci$conf.int[1], 1)`, `r round(pika_ci$conf.int[2], 1)`] g.
 
+beautiful!!! looks exactly the same in the html, but if I change any values, they'll be updated automatically!
+
+# Two-sample t-test
+
+Use a two-sample t-test to test the null hypothesis that samples were drawn from populations with the same mean (difference in means = 0).
+
+- H0: Means difference = 0
+- HA: Means difference is NOT = 0
+
+This is a two-sided t-test because no directionality is implied.
+
+## Example 1
+
+```{r}
+oak_trees <- c(29, 19, 22, 30, 35, 16, 20, 7)
+  
+pine_trees <- c(48, 32, 41, 40, 56, 70, 30, 19, 20)
+```
+
+Is there a significant difference in mean heights for oak and pine trees?
+
+```{r}
+trees_t <- t.test(oak_trees, pine_trees)
+```
+
+The p-value of `r trees_t$p.value` means that there is a `r round(trees_t$p.value*100, 1)`% chance of finding sample means *at least as different* as those I found by random chance if they were drawn from populations with the same mean height.
