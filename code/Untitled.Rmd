@@ -1,0 +1,49 @@
+---
+title: "Lab 5"
+author: "Shayan Kaveh"
+date: "10/26/2021"
+output: 
+  html_document: 
+    toc: yes
+    theme: cerulean
+    number_sections: yes
+    code_folding: hide
+---
+
+```{r setup, include=FALSE, warning = FALSE, message = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+# Confidence intervals
+
+In this section, we'll learn to use the 't.test()' function as a way to return the confidence interval using the t-distribution.
+
+## Example 1
+
+Create a mock sample of observation values and find the confidence interval. Then we'll learn how to report that.
+
+```{r}
+pika_mass <- c(82, 94, 110, 70, 86, 99, 102)
+
+pika_mean <- mean(pika_mass) # calculate mean
+
+pika_sd <- sd(pika_mass) # calculate standard deviation
+
+pika_ci <- t.test(pika_mass) # this exists in base R, so it'll work without any attached packages
+
+pika_ci
+```
+
+### Risky & tedious way:
+
+Mean pika mass at Paiute Pass is 91.9 g $\pm$ 13.5 g (mean $\pm$ 1 standard deviation, n = 7) with a 95% confidence interval of [79.4, 104.4] g.
+
+### A high initial investment, but safer & better way:
+
+In-line code referencing to stored objects!
+
+Use a single back tick (*not* an apostrophe) on either side of a lowercase r to create an in-line bit of code.
+
+Mean pika mass at Paiute Pass is `r round(pika_mean, 1)` g $\pm$ `r round(pika_sd, 1)` g (mean $\pm$ 1 standard deviation, n = `r length(pika_mass)`)
+
